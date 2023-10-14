@@ -1,0 +1,31 @@
+" This is personally perferred neovim config file.
+
+" Turn on syntax highlighting.
+syntax on
+
+" Show line numbers.
+set nu
+
+" Show current cursor position.
+set ruler
+
+" tab size is 4 spaces.
+set shiftwidth=4
+
+" Insert or deletes spaces instead of a tab.
+set smarttab
+
+" C style indent.
+set cindent
+
+" Support mouse.
+set mouse=a
+
+" Highlight search patterns.
+set hlsearch
+
+" Show available auto completion words in command mode.
+set wildmenu
+
+" Set colorscheme
+colorschem shine
