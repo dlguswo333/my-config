@@ -2,8 +2,13 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 alias python="python3"
-alias ls="ls -G"
-alias ll="ls -alGh"
+# -G Do not print group.
+# -F Print classifiers; * for executables, / for directories.
+alias ls="ls -GF --color"
+# -a Get all including entries starting with '.'.
+# -l Use long listing format
+# -h Human readable size format
+alias ll="ls -alhF --color"
 
 # Enable auto correction
 setopt correct
