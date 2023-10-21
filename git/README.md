@@ -36,4 +36,11 @@ git config core.autocrlf input
 
 Note that `core.eol` is [ignored][core-eol-ignore] if `core.autocrlf` is `true` or `ignored`.
 
+# Change Editor
+```shell
+git config --global core.editor <YOUR-EDITOR>
+```
+
+It also supports `~` user home directory. For instance, `~/nvim.appimage`.
+
 [core-eol-ignore]: https://git-scm.com/docs/git-config
