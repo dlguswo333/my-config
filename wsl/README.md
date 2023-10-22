@@ -54,11 +54,14 @@ default=dlguswo333
 
 # Useful Config
 Add these lines to your shell config if you want vscode and explorer.exe in your Linux shell.
-This is particularly useful if you disable `appendWindowsPath` but need some of them.
+This is particularly useful if you disable `appendWindowsPath` but need some of them.<br>
+Note that aliasing `code` as `.../Microsoft VS Code/Code.exe` is going to execute in `wsl.localhost`,
+not in WSL folder mode. It will have extensions on Windows enabled, not Linux's ones.
+See <https://github.com/microsoft/vscode-remote-release/issues/8009> for more infos.
 
 ```shell
 # Alias Windows executables for wsl
-alias code="/mnt/c/Users/dlguswo/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe"
+alias code="/mnt/c/Users/dlguswo333/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code"
 alias explorer="/mnt/c/Windows/explorer.exe"
 ```
 
