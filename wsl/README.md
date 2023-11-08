@@ -33,6 +33,8 @@ Note that you need super user privileges to edit the file.
 
 wsl appends useful Windows paths to wsl instances' "PATH" env by default.
 If you do not want this behavior, add this to `/etc/wsl.conf` in your wsl instance.
+This may also affect performance since the system needs to search excessive
+Windows paths. See this [Github issue][windows-path-issue] for more information.
 ```shell
 [interop]
 appendWindowsPath = false
@@ -67,3 +69,4 @@ alias explorer="/mnt/c/Windows/explorer.exe"
 
 [install-manual]: https://learn.microsoft.com/en-us/windows/wsl/install-manual
 [basic-commands]: https://learn.microsoft.com/ko-kr/windows/wsl/basic-commands
+[windows-path-issue]: https://github.com/microsoft/WSL/issues/4234 
