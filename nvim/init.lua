@@ -1,0 +1,53 @@
+-- This is personally perferred vim settings file.
+
+-- Turn on syntax highlighting.
+vim.cmd("syntax on")
+
+-- Show line numbers.
+vim.cmd("set nu")
+
+-- Show current cursor position.
+vim.cmd("set ruler")
+
+-- tab size is 4 spaces.
+vim.cmd("set shiftwidth=4")
+
+-- Insert or deletes spaces instead of a tab.
+vim.cmd("set smarttab")
+
+-- C style indent.
+vim.cmd("set cindent")
+
+-- Support mouse.
+vim.cmd("set mouse=a")
+
+-- Highlight search patterns.
+vim.cmd("set hlsearch")
+
+-- Show available auto completion words in command mode.
+vim.cmd("set wildmenu")
+
+-- Set colorscheme
+vim.cmd("colorschem zellner")
+
+vim.cmd([[
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+]])
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup(plugins, opts)
+
