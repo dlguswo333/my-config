@@ -36,6 +36,7 @@ if has("autocmd")
 endif
 ]])
 
+-- lazy.nvim package manager.
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -48,6 +49,21 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
+local plugins = {
+  -- Find files easily.
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  }
+}
 require("lazy").setup(plugins, opts)
-
+local builtin = require("telescope.builtin")
+local utils = require("telescope.utils")
+vim.keymap.set(
+  -- Normal mode.
+  "n",
+  -- Ctrl + p, just like vscode.
+  "<C-p>",
+  -- Search for files only in cwd.
+  function() builtin.find_files({cwd = utils.buffer_dir()}) end, {}
+)
