@@ -18,6 +18,8 @@ chmod u+x nvim.appimage
 alias ~/nvim.appimage nvim
 ```
 
+If you do not want package manager and additional plugins,
+what you need is `init.vim`.
 Copy and paste the `init.vim` file to the designated path.
 According to [neovim docs][neovim-config]:
 
@@ -36,8 +38,15 @@ $XDG_CONFIG_HOME  	$XDG_CONFIG_HOME/nvim/init.vim	(or init.lua)
 Thus if you are on Unix (Linux):
 
 ```shell
-mkdir -p ~/.config/nvim/init.vim
+mkdir -p ~/.config/nvim/
 cp nvim/init.vim ~/.config/nvim/
+```
+
+If you like to install additional features, what you need is `init.lua`.
+
+```shell
+mkdir -p ~/.config/nvim/
+cp nvim/init.lua ~/.config/nvim/
 ```
 
 [neovim]: https://github.com/neovim/neovim
