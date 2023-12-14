@@ -27,6 +27,10 @@ set hlsearch
 " Show available auto completion words in command mode.
 set wildmenu
 
+" Enable case insensitive search only if keyword not having capitals.
+set ignorecase
+set smartcase
+
 " Set colorscheme
 colorschem shine
 

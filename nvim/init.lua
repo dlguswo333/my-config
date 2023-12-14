@@ -27,9 +27,14 @@ vim.cmd("set hlsearch")
 -- Show available auto completion words in command mode.
 vim.cmd("set wildmenu")
 
+-- Enable case insensitive search only if keyword not having capitals.
+vim.cmd("set ignorecase")
+vim.cmd("set smartcase")
+
 -- Set colorscheme
 vim.cmd("colorschem zellner")
 
+-- Remember last position
 vim.cmd([[
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
