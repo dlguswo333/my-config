@@ -64,11 +64,16 @@ local plugins = {
 require("lazy").setup(plugins, opts)
 local builtin = require("telescope.builtin")
 local utils = require("telescope.utils")
+
+-- In normal mode, map Ctrl + p to searching for files only in cwd.
 vim.keymap.set(
-  -- Normal mode.
   "n",
-  -- Ctrl + p, just like vscode.
   "<C-p>",
-  -- Search for files only in cwd.
   function() builtin.find_files({cwd = utils.buffer_dir()}) end, {}
+)
+-- In normal mode, map Ctrl + t to searching for a string in cwd.
+vim.keymap.set(
+  "n",
+  "<C-t>",
+  builtin.live_grep, {}
 )
