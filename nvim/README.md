@@ -43,10 +43,16 @@ cp nvim/init.vim ~/.config/nvim/
 ```
 
 If you like to install additional features, what you need is `init.lua`.
+You need to install ripgrep to use telescope's features, including searching for keywords.
+ripgrep needs to be accessible through PATH env.
 
 ```shell
 mkdir -p ~/.config/nvim/
 cp nvim/init.lua ~/.config/nvim/
+
+# Run the following commands on Linux. Use brew to install ripgrep on Mac.
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.0.3/ripgrep_14.0.3-1_amd64.deb
+sudo dpkg -i ripgrep_14.0.3-1_amd64.deb
 ```
 
 [neovim]: https://github.com/neovim/neovim
