@@ -69,7 +69,7 @@ local utils = require("telescope.utils")
 vim.keymap.set(
   "n",
   "<C-p>",
-  function() builtin.find_files({cwd = utils.buffer_dir()}) end, {}
+  builtin.find_files, {}
 )
 -- In normal mode, map Ctrl + t to searching for a string in cwd.
 vim.keymap.set(
