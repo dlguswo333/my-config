@@ -1,1 +1,1 @@
-Place `tmux.conf` file in your home directory.
+Place `.tmux.conf` file in your home directory.
