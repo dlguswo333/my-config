@@ -32,7 +32,7 @@ vim.cmd("set ignorecase")
 vim.cmd("set smartcase")
 
 -- Set colorscheme
-vim.cmd("colorschem zellner")
+vim.cmd("colorscheme shine")
 
 -- Remember last position
 vim.cmd([[
