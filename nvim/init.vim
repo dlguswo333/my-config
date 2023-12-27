@@ -12,7 +12,10 @@ set ruler
 " tab size is 4 spaces.
 set shiftwidth=4
 
-" Insert or deletes spaces instead of a tab.
+" Use spaces instead of a tab.
+set expandtab
+
+" Insert or deletes spaces instead of a tab at the start of line.
 set smarttab
 
 " C style indent.

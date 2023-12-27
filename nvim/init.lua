@@ -12,9 +12,12 @@ vim.cmd("set ruler")
 -- tab size is 4 spaces.
 vim.cmd("set shiftwidth=4")
 
--- Insert or deletes spaces instead of a tab.
-vim.cmd("set smarttab")
+-- Use spaces instead of a tab.
+vim.cmd("set expandtab")
 
+-- Insert or deletes spaces instead of a tab at the start of line.
+vim.cmd("set smarttab")
+        
 -- C style indent.
 vim.cmd("set cindent")
 
