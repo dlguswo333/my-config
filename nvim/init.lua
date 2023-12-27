@@ -44,6 +44,9 @@ if has("autocmd")
 endif
 ]])
 
+-- Set leader key for custom key mappings.
+vim.g.mapleader = ' '
+
 -- lazy.nvim package manager.
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
