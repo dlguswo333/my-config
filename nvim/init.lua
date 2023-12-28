@@ -65,7 +65,26 @@ local plugins = {
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
     dependencies = { 'nvim-lua/plenary.nvim' }
-  }
+  },
+  -- Highlight code with parsers.
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function()
+      local config = require('nvim-treesitter.configs')
+      config.setup({
+        ensure_installed = {
+          -- These 5 parsers should always be installed. But I don't know exactly why...
+          -- https://github.com/nvim-treesitter/nvim-treesitter
+          'c', 'lua', 'vim', 'vimdoc', 'query',
+        },
+        sync_install = true,
+        ignore_install = { 'all' },
+        highlight = { enable = true },
+        indent = { enable = false },
+      })
+    end
+  },
 }
 require("lazy").setup(plugins, opts)
 local builtin = require("telescope.builtin")
