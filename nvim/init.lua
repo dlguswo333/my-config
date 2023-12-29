@@ -17,7 +17,7 @@ vim.cmd("set expandtab")
 
 -- Insert or deletes spaces instead of a tab at the start of line.
 vim.cmd("set smarttab")
-        
+
 -- C style indent.
 vim.cmd("set cindent")
 
@@ -93,6 +93,13 @@ local plugins = {
         highlight = { enable = true },
         indent = { enable = false },
       })
+    end
+  },
+  -- Guess indent styles and apply from the file.
+  {
+    'nmac427/guess-indent.nvim',
+    config = function()
+      require('guess-indent').setup()
     end
   },
 }
