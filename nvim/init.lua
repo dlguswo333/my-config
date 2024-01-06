@@ -108,10 +108,15 @@ local builtin = require("telescope.builtin")
 local utils = require("telescope.utils")
 
 -- In normal mode, map Ctrl + p to searching for files only in cwd.
+-- Allow hidden files (e.g. dotfiles) to appear but not certain files.
 vim.keymap.set(
   "n",
   "<C-p>",
-  builtin.find_files, {}
+  function() builtin.find_files({
+    hidden = true,
+    file_ignore_patterns={'node_modules', '.git'}
+  }) end,
+  {}
 )
 -- In normal mode, map Ctrl + t to searching for a string in cwd.
 vim.keymap.set(
