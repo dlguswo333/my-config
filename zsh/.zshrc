@@ -13,6 +13,9 @@ alias ll="ls -alhF --color"
 # Enable auto correction
 setopt correct
 
+# Skip duplicated command lines in history.
+setopt histignoredups
+
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
 SAVEHIST=1000
