@@ -90,7 +90,28 @@ local plugins = {
         },
         sync_install = true,
         ignore_install = { 'all' },
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          is_supported = function()
+            function check_big_file()
+              local threshold = 300 * 1024
+              -- get the full path of the current file
+              local filename = vim.fn.expand('%:p')
+              -- get the size of the file in bytes
+              local filesize = vim.fn.getfsize(filename)
+              if filesize > threshold then
+                  return true
+              else
+                  return false
+              end
+            end
+
+            if check_big_file() then
+              return false
+            end
+            return true
+          end
+        },
         indent = { enable = false },
       })
     end
