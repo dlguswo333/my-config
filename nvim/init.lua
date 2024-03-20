@@ -116,6 +116,18 @@ local plugins = {
       })
     end
   },
+  -- Setup status bar.
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup({
+        options = {
+          theme = 'ayu_light'
+        }
+      })
+    end
+  },
   -- Guess indent styles and apply from the file.
   {
     'nmac427/guess-indent.nvim',
