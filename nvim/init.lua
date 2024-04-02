@@ -148,7 +148,7 @@ vim.keymap.set(
   function() builtin.find_files({
     hidden = true,
     -- '%' is an escape character in lua patterns.
-    file_ignore_patterns={'node_modules', '%.git'}
+    file_ignore_patterns={'node_modules', '%.git%/'}
   }) end,
   {}
 )
