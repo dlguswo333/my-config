@@ -47,6 +47,9 @@ endif
 -- Set leader key for custom key mappings.
 vim.g.mapleader = ' '
 
+-- Update this boolean value whether you like to use lsp plugins.
+local use_lsp = false
+
 -- lazy.nvim package manager.
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -60,6 +63,7 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
+
 local plugins = {
   -- Fuzzy find things easily.
   {
@@ -135,6 +139,36 @@ local plugins = {
       require('guess-indent').setup()
     end
   },
+  -- Setup lsp using lsp-zero. Belows are dependencies.
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
+    cond = use_lsp
+  },
+  {
+    'neovim/nvim-lspconfig',
+     cond = use_lsp
+  },
+  {
+    'hrsh7th/cmp-nvim-lsp',
+     cond = use_lsp
+    },
+  {
+    'hrsh7th/nvim-cmp',
+     cond = use_lsp
+    },
+  {
+    'L3MON4D3/LuaSnip',
+     cond = use_lsp
+    },
+  {
+    'williamboman/mason.nvim',
+     cond = use_lsp
+    },
+  {
+    'williamboman/mason-lspconfig.nvim',
+     cond = use_lsp
+  },
 }
 require("lazy").setup(plugins, opts)
 local builtin = require("telescope.builtin")
@@ -173,3 +207,31 @@ vim.keymap.set(
   "<leader>f",
   function() builtin.live_grep({grep_open_files=true}) end, {}
 )
+
+-- Setup lsp using lsp-zero.
+if use_lsp then
+  require('mason').setup({})
+  local lsp_zero = require('lsp-zero')
+  lsp_zero.on_attach(function(_, bufnr)
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    lsp_zero.default_keymaps({buffer = bufnr})
+  end)
+  require('mason-lspconfig').setup({
+    handlers = {
+      lsp_zero.default_setup
+    }
+  })
+  local cmp = require('cmp')
+  cmp.setup({
+    mapping = {
+      ['<Tab>'] = cmp.mapping.confirm({select = true})
+    },
+    window = {
+      completion = {
+        border = 'rounded',
+        -- winhighlight = 'Normal:CmpNormal',
+      }
+    }
+  })
+end

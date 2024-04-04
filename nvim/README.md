@@ -55,5 +55,16 @@ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.0.3/ripgrep_
 sudo dpkg -i ripgrep_14.0.3-1_amd64.deb
 ```
 
+Also, `init.lua` has some basic LSP features based on [lsp-zero][lsp-zero].
+You can control whether to turn it on and off by updating a boolean value defined in the file.
+To enable it, you need to install LSP or linters such things by [mason][mason],
+a package manager for LSP.
+
+```shell
+:MasonInstall <PACKAGE>
+```
+
 [neovim]: https://github.com/neovim/neovim
 [neovim-config]: https://neovim.io/doc/user/starting.html#initialization
+[lsp-zero]: https://github.com/VonHeikemen/lsp-zero.nvim
+[mason]: https://github.com/williamboman/mason.nvim
