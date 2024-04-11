@@ -219,6 +219,13 @@ if use_lsp then
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     lsp_zero.default_keymaps({buffer = bufnr})
+    -- Show lsp_references within telescope.
+    vim.keymap.set(
+      'n',
+      'gr',
+      function() builtin.lsp_references({initial_mode = 'normal'}) end,
+      {buffer = bufnr}
+    )
   end)
   require('mason-lspconfig').setup({
     handlers = {
