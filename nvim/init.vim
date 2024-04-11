@@ -6,6 +6,9 @@ syntax on
 " Show line numbers.
 set nu
 
+" Highlight the current cursor line.
+set cursorline
+
 " Show current cursor position.
 set ruler
 
