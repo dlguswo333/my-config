@@ -177,11 +177,11 @@ require("lazy").setup(plugins, opts)
 local builtin = require("telescope.builtin")
 local utils = require("telescope.utils")
 
--- In normal mode, map Ctrl + o to searching for files only in cwd.
+-- In normal mode, map <leader>o to searching for files only in cwd.
 -- Allow hidden files (e.g. dotfiles) to appear but not certain files.
 vim.keymap.set(
   "n",
-  "<C-o>",
+  "<leader>o",
   function() builtin.find_files({
     hidden = true,
     -- '%' is an escape character in lua patterns.
