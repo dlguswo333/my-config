@@ -43,4 +43,30 @@ git config --global core.editor <YOUR-EDITOR>
 
 It also supports `~` user home directory. For instance, `~/nvim.appimage`.
 
+# Change difftool
+Instead of printing git changes in your shell terminal with `git diff`,
+you can watch changes inside your favorite tools.
+The command is a frontend to `git diff` command and accepts the same options.
+```shell
+git difftool
+```
+
+git supports changing difftool that matches your appetite.
+In case you want to neovim to be your difftool add the lines to your git configs:
+```shell
+git config --global diff.tool nvimdiff
+git config --global difftool.nvimdiff.cmd 'nvim -d "$LOCAL" "$REMOTE"'
+```
+
+But git might start asking you whether to show each file with the configured difftool.
+```
+Viewing (2/2): 'nvim/init.lua'
+Launch 'nvimdiff' [Y/n]?
+```
+
+If you find this behavior annoying, run this command:
+```shell
+git config --global difftool.prompt false
+```
+
 [core-eol-ignore]: https://git-scm.com/docs/git-config
