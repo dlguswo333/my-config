@@ -204,11 +204,11 @@ vim.keymap.set(
   builtin.live_grep, {}
 )
 
--- In normal mode, map <leader>f to searching for a string in the open files.
+-- In normal mode, map <leader>f to searching for a string in the current buffer.
 vim.keymap.set(
   "n",
   "<leader>f",
-  function() builtin.live_grep({grep_open_files=true}) end, {}
+   builtin.current_buffer_fuzzy_find, {}
 )
 
 -- Setup lsp using lsp-zero.
