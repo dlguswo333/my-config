@@ -244,4 +244,20 @@ if use_lsp then
       }
     }
   })
+
+  local lspconfig = require('lspconfig')
+  if lspconfig.jsonls then
+    lspconfig.jsonls.setup({
+      settings = {
+        json = {
+          schemas = {
+            {
+              fileMatch = {'package.json'},
+              url = 'https://json.schemastore.org/package.json',
+            },
+          },
+        },
+      }
+    })
+  end
 end
