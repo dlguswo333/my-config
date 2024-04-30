@@ -18,6 +18,20 @@ chmod u+x nvim.appimage
 alias ~/nvim.appimage nvim
 ```
 
+If you want the appimage available globally (e.g. super user),
+you can do that by creating a link file in bin folder.
+
+```shell
+sudo ln -s ~/nvim.appimage /usr/local/bin/nvim
+```
+
+You may also put the appimage file into the folder,
+but then you need to type `nvim.appimage` command.
+Linux commands are expected to be single word.
+You will end up linking or aliasing anyway.
+
+---
+
 If you do not want package manager and additional plugins,
 what you need is `init.vim`.
 Copy and paste the `init.vim` file to the designated path.
