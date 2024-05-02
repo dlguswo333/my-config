@@ -131,6 +131,15 @@ local plugins = {
       require('lualine').setup({
         options = {
           theme = 'ayu_light'
+        },
+        sections = {
+          lualine_c = {
+            {
+              'filename',
+              -- 0 = just filename, 1 = relative path, 2 = absolute path
+              path = 1
+            }
+          }
         }
       })
     end
