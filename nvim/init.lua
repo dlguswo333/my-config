@@ -139,6 +139,10 @@ local plugins = {
               -- 0 = just filename, 1 = relative path, 2 = absolute path
               path = 1
             }
+          },
+          lualine_x = {
+            'encoding',
+            'filetype'
           }
         }
       })
