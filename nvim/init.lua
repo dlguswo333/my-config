@@ -206,14 +206,14 @@ vim.keymap.set(
 -- In normal mode, map Ctrl + p to searching for files only in buffers.
 vim.keymap.set(
   "n",
-  "<C-p>",
+  "<leader>p",
   builtin.buffers, {}
 )
 
 -- In normal mode, map Ctrl + t to searching for a string in cwd.
 vim.keymap.set(
   "n",
-  "<C-t>",
+  "<leader>t",
   builtin.live_grep, {}
 )
 
