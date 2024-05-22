@@ -83,6 +83,15 @@ local plugins = {
       })
     end
   },
+  -- Show git blame of the current line.
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  },
+  -- Show git blame of the current line.
+  { 'f-person/git-blame.nvim' },
   -- Highlight code with parsers.
   {
     'nvim-treesitter/nvim-treesitter',
