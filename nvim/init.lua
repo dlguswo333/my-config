@@ -47,6 +47,13 @@ if has("autocmd")
 endif
 ]])
 
+-- In normal mode, map <c-w>+ to maximizing the current window.
+vim.keymap.set(
+  'n',
+  '<c-w>+',
+  ':resize <bar> :vertical resize <cr>'
+)
+
 -- Set leader key for custom key mappings.
 vim.g.mapleader = ' '
 
