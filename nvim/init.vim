@@ -38,7 +38,7 @@ set ignorecase
 set smartcase
 
 " Set colorscheme
-colorschem shine
+colorscheme shine
 
 " Remember last position
 if has("autocmd")
