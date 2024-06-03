@@ -172,6 +172,18 @@ local plugins = {
       })
     end
   },
+  {
+    'folke/which-key.nvim',
+    config = function ()
+      local which = require('which-key')
+      -- which.setup()
+      which.setup({
+        window = {
+          border = 'single',
+        },
+      })
+    end
+  },
   -- Guess indent styles and apply from the file.
   {
     'nmac427/guess-indent.nvim',
