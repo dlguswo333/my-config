@@ -271,6 +271,20 @@ if use_lsp then
       buffer = bufnr,
       preserve_mappings = false,
     })
+
+    -- Show lsp_definitions within telescope.
+    vim.keymap.set(
+      'n',
+      'gd',
+      function()
+        builtin.lsp_definitions({
+          initial_mode = 'normal',
+          show_line = false,
+        })
+      end,
+      { buffer = bufnr }
+    )
+
     -- Show lsp_references within telescope.
     vim.keymap.set(
       'n',
