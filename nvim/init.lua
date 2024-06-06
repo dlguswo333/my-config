@@ -221,6 +221,11 @@ local plugins = {
     'williamboman/mason-lspconfig.nvim',
      cond = use_lsp
   },
+  -- Show autocompletion from the buffer.
+  {
+    'hrsh7th/cmp-buffer',
+     cond = use_lsp
+  }
 }
 require("lazy").setup(plugins, opts)
 local builtin = require("telescope.builtin")
@@ -298,6 +303,7 @@ if use_lsp then
       lsp_zero.default_setup
     }
   })
+
   local cmp = require('cmp')
   cmp.setup({
     mapping = {
@@ -309,6 +315,15 @@ if use_lsp then
         -- winhighlight = 'Normal:CmpNormal',
       }
     }
+  })
+  local cmp_format = lsp_zero.cmp_format({details = true})
+  cmp.setup({
+    -- The order of the sources determines their order in the completion results.
+    sources = {
+      {name = 'nvim_lsp'},
+      {name = 'buffer'},
+    },
+    formatting = cmp_format,
   })
 
   local lspconfig = require('lspconfig')
