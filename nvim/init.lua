@@ -168,6 +168,15 @@ local plugins = {
             'encoding',
             'filetype'
           }
+        },
+        inactive_sections = {
+          lualine_c = {
+            {
+              'filename',
+              -- 0 = just filename, 1 = relative path, 2 = absolute path
+              path = 1
+            }
+          },
         }
       })
     end
