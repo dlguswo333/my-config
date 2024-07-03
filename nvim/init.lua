@@ -40,6 +40,9 @@ vim.cmd("set smartcase")
 -- Set colorscheme
 vim.cmd("colorscheme shine")
 
+-- Automatically reload on file changes.
+vim.cmd("set autoread")
+
 -- Remember last position
 vim.cmd([[
 if has("autocmd")
