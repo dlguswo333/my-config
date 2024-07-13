@@ -241,7 +241,6 @@ local plugins = {
 }
 require("lazy").setup(plugins, opts)
 local builtin = require("telescope.builtin")
-local utils = require("telescope.utils")
 
 -- In normal mode, map <leader>o to searching for files only in cwd.
 -- Allow hidden files (e.g. dotfiles) to appear but not certain files.
@@ -275,6 +274,13 @@ vim.keymap.set(
   "n",
   "<leader>f",
    builtin.current_buffer_fuzzy_find, {}
+)
+
+-- In normal mode, map <leader>c to searching commands.
+vim.keymap.set(
+  "n",
+  "<leader>c",
+   builtin.commands, {}
 )
 
 -- Setup lsp using lsp-zero.
