@@ -188,9 +188,8 @@ local plugins = {
     'folke/which-key.nvim',
     config = function ()
       local which = require('which-key')
-      -- which.setup()
       which.setup({
-        window = {
+        win = {
           border = 'single',
         },
       })
