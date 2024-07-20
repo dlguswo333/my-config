@@ -264,7 +264,7 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "<leader>p",
-  builtin.buffers, {}
+  function () builtin.buffers({sort_mru = true}) end, {}
 )
 
 -- In normal mode, map Ctrl + t to searching for a string in cwd.
