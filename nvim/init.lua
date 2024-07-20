@@ -275,9 +275,9 @@ vim.keymap.set(
    builtin.current_buffer_fuzzy_find, {}
 )
 
--- In normal mode, map <leader>c to searching commands.
+-- In normal anv visual mode, map <leader>c to searching commands.
 vim.keymap.set(
-  "n",
+  {"n", "v"},
   "<leader>c",
    builtin.commands, {}
 )
