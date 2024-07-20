@@ -238,7 +238,13 @@ local plugins = {
      cond = use_lsp
   }
 }
-require("lazy").setup(plugins, opts)
+
+require("lazy").setup(plugins, {
+  defaults = {
+    version = '*',
+  },
+})
+
 local builtin = require("telescope.builtin")
 
 -- In normal mode, map <leader>o to searching for files only in cwd.
