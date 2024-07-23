@@ -195,6 +195,10 @@ local plugins = {
       })
     end
   },
+  {
+    'nvim-tree/nvim-tree.lua',
+    opts = {},
+  },
   -- Guess indent styles and apply from the file.
   {
     'nmac427/guess-indent.nvim',
@@ -286,6 +290,13 @@ vim.keymap.set(
   {"n", "v"},
   "<leader>c",
    builtin.commands, {}
+)
+
+-- In normal mode, map <leader>e to nvimtree toggle.
+vim.keymap.set(
+  "n",
+  "<leader>e",
+   function () vim.cmd(':NvimTreeToggle <cr>') end, {}
 )
 
 -- Setup lsp using lsp-zero.
