@@ -189,6 +189,10 @@ local plugins = {
     'nvim-tree/nvim-tree.lua',
     opts = {},
   },
+  {
+    'numToStr/Comment.nvim',
+    opts = {}
+  },
   -- Guess indent styles and apply from the file.
   {
     'nmac427/guess-indent.nvim',
