@@ -82,118 +82,108 @@ local plugins = {
   {
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      local config = require('telescope')
-      config.setup({
-        pickers = {
-          colorscheme = {
-            enable_preview = true
-          }
+    opts = {
+      pickers = {
+        colorscheme = {
+          enable_preview = true
         }
-      })
-    end
+      }
+    }
   },
   -- Show git blame of the current line.
   {
     'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end
+    opts = {}
   },
   -- Show git blame of the current line.
-  { 'f-person/git-blame.nvim' },
+  {
+    'f-person/git-blame.nvim',
+    opts = {}
+  },
   -- Highlight code with parsers.
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    config = function()
-      local config = require('nvim-treesitter.configs')
-      config.setup({
-        ensure_installed = {
-          -- These 5 parsers should always be installed. But I don't know exactly why...
-          -- https://github.com/nvim-treesitter/nvim-treesitter
-          'c', 'lua', 'vim', 'vimdoc', 'query',
-        },
-        sync_install = true,
-        ignore_install = { 'all' },
-        highlight = {
-          enable = true,
-          is_supported = function()
-            function check_big_file()
-              local threshold = 300 * 1024
-              -- get the full path of the current file
-              local filename = vim.fn.expand('%:p')
-              -- get the size of the file in bytes
-              local filesize = vim.fn.getfsize(filename)
-              if filesize > threshold then
-                  return true
-              else
-                  return false
-              end
+    opts = {
+      ensure_installed = {
+        -- These 5 parsers should always be installed. But I don't know exactly why...
+        -- https://github.com/nvim-treesitter/nvim-treesitter
+        'c', 'lua', 'vim', 'vimdoc', 'query',
+      },
+      sync_install = true,
+      ignore_install = { 'all' },
+      highlight = {
+        enable = true,
+        is_supported = function()
+          function check_big_file()
+            local threshold = 300 * 1024
+            -- get the full path of the current file
+            local filename = vim.fn.expand('%:p')
+            -- get the size of the file in bytes
+            local filesize = vim.fn.getfsize(filename)
+            if filesize > threshold then
+                return true
+            else
+                return false
             end
-
-            if check_big_file() then
-              return false
-            end
-            return true
           end
+
+          if check_big_file() then
+            return false
+          end
+          return true
+        end
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<cr>",
+          node_incremental = "<cr>",
+          node_decremental = "<bs>",
         },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<cr>",
-            node_incremental = "<cr>",
-            node_decremental = "<bs>",
-          },
-        },
-        indent = { enable = false },
-      })
-    end
+      },
+      indent = { enable = false },
+    }
   },
   -- Setup status bar.
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('lualine').setup({
-        options = {
-          theme = 'ayu_light'
-        },
-        sections = {
-          lualine_c = {
-            {
-              'filename',
-              -- 0 = just filename, 1 = relative path, 2 = absolute path
-              path = 1
-            }
-          },
-          lualine_x = {
-            'encoding',
-            'filetype'
+    opts = {
+      options = {
+        theme = 'ayu_light'
+      },
+      sections = {
+        lualine_c = {
+          {
+            'filename',
+            -- 0 = just filename, 1 = relative path, 2 = absolute path
+            path = 1
           }
         },
-        inactive_sections = {
-          lualine_c = {
-            {
-              'filename',
-              -- 0 = just filename, 1 = relative path, 2 = absolute path
-              path = 1
-            }
-          },
+        lualine_x = {
+          'encoding',
+          'filetype'
         }
-      })
-    end
+      },
+      inactive_sections = {
+        lualine_c = {
+          {
+            'filename',
+            -- 0 = just filename, 1 = relative path, 2 = absolute path
+            path = 1
+          }
+        },
+      }
+    }
   },
   {
     'folke/which-key.nvim',
-    config = function ()
-      local which = require('which-key')
-      which.setup({
-        win = {
-          border = 'single',
-        },
-      })
-    end
+    opts = {
+      win = {
+        border = 'single',
+      },
+    }
   },
   {
     'nvim-tree/nvim-tree.lua',
@@ -202,9 +192,7 @@ local plugins = {
   -- Guess indent styles and apply from the file.
   {
     'nmac427/guess-indent.nvim',
-    config = function()
-      require('guess-indent').setup()
-    end
+    opts = {}
   },
   -- Setup lsp using lsp-zero. Belows are dependencies.
   {
