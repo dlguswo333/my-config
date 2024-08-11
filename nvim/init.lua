@@ -61,7 +61,7 @@ vim.keymap.set(
 vim.g.mapleader = ' '
 
 -- Update this boolean value whether you like to use lsp plugins.
-local use_lsp = false
+local use_lsp = true
 
 -- lazy.nvim package manager.
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
