@@ -371,4 +371,13 @@ if use_lsp then
       }
     })
   end
+  if lspconfig.vtsls then
+    lspconfig.vtsls.setup({
+      settings = {
+        vtsls = {
+          autoUseWorkspaceTsdk = true
+        }
+      }
+    })
+  end
 end
