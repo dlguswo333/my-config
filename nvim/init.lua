@@ -154,6 +154,14 @@ local plugins = {
         theme = 'ayu_light'
       },
       sections = {
+        lualine_a = {
+          {
+            'mode',
+            -- 0 = just filename, 1 = relative path, 2 = absolute path
+            fmt = function(str) return str:sub(1,1) end
+            -- Truncate to show only the first character
+          }
+        },
         lualine_c = {
           {
             'filename',
