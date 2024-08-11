@@ -198,40 +198,40 @@ local plugins = {
     'nmac427/guess-indent.nvim',
     opts = {}
   },
-  -- Setup lsp using lsp-zero. Belows are dependencies.
+  -- Setup lsp using lsp-zero and plugins below this line are all about lsp.
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
-    cond = use_lsp
+    enabled = use_lsp
   },
   {
     'neovim/nvim-lspconfig',
-     cond = use_lsp
+     enabled = use_lsp
   },
   {
     'hrsh7th/cmp-nvim-lsp',
-     cond = use_lsp
+     enabled = use_lsp
     },
   {
     'hrsh7th/nvim-cmp',
-     cond = use_lsp
+     enabled = use_lsp
     },
   {
     'L3MON4D3/LuaSnip',
-     cond = use_lsp
+     enabled = use_lsp
     },
   {
     'williamboman/mason.nvim',
-     cond = use_lsp
+     enabled = use_lsp
     },
   {
     'williamboman/mason-lspconfig.nvim',
-     cond = use_lsp
+     enabled = use_lsp
   },
   -- Show autocompletion from the buffer.
   {
     'hrsh7th/cmp-buffer',
-     cond = use_lsp
+     enabled = use_lsp
   }
 }
 
