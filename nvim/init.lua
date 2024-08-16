@@ -328,7 +328,12 @@ if use_lsp then
     vim.keymap.set(
       'n',
       'gr',
-      function() builtin.lsp_references({initial_mode = 'normal'}) end,
+      function()
+        builtin.lsp_references({
+          initial_mode = 'normal',
+          show_line = false,
+        })
+      end,
       {buffer = bufnr}
     )
   end)
