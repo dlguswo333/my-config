@@ -48,4 +48,8 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" Set leader key
+let mapleader = ' '
+
 noremap <c-w>+ :resize <bar> :vertical resize <cr>
+noremap <leader>bd :bn <bar> :bd# <cr>

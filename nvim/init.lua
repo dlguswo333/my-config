@@ -278,6 +278,13 @@ vim.keymap.set(
   builtin.live_grep, {}
 )
 
+-- This keymap closes the current buffer without closing the window.
+vim.keymap.set(
+  'n',
+  '<leader>bd',
+  ':bn <bar> :bd# <cr>'
+)
+
 -- In normal mode, map <leader>f to searching for a string in the current buffer.
 vim.keymap.set(
   "n",
