@@ -104,6 +104,7 @@ local plugins = {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    main = 'nvim-treesitter.configs',
     opts = {
       ensure_installed = {
         -- These 5 parsers should always be installed. But I don't know exactly why...
