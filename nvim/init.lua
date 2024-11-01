@@ -393,10 +393,14 @@ if use_lsp then
     })
   end
   if lspconfig.vtsls then
+    local yarnTsdkPath = './.yarn/sdks/typescript/lib'
     lspconfig.vtsls.setup({
       settings = {
         vtsls = {
           autoUseWorkspaceTsdk = true
+        },
+        typescript = {
+          tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil
         }
       }
     })
