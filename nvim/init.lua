@@ -400,6 +400,7 @@ if use_lsp then
           autoUseWorkspaceTsdk = true
         },
         typescript = {
+          -- https://github.com/yioneko/vtsls/issues/169
           tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil
         }
       }
