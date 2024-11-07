@@ -317,6 +317,13 @@ vim.keymap.set(
    function () vim.cmd(':NvimTreeToggle <cr>') end, {}
 )
 
+-- In normal mode, map Ctrl + T to searching for telescope commands.
+vim.keymap.set(
+  "n",
+  "<leader>T",
+  function () vim.cmd(':Telescope') end, {}
+)
+
 -- Setup lsp using lsp-zero.
 if use_lsp then
   require('mason').setup({})
