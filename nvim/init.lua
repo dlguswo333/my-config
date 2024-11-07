@@ -220,11 +220,12 @@ local plugins = {
   {
     'hrsh7th/cmp-nvim-lsp',
      enabled = use_lsp
-    },
+  },
   {
     'hrsh7th/nvim-cmp',
-     enabled = use_lsp
-    },
+    version = false,
+    enabled = use_lsp
+  },
   {
     'L3MON4D3/LuaSnip',
      enabled = use_lsp
