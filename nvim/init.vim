@@ -48,6 +48,8 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+command CopyCurrentBufferPath let @+=@% | echo "Copied to clipboard: " . @%
+
 " Set leader key
 let mapleader = ' '
 

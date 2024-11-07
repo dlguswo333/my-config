@@ -57,6 +57,15 @@ vim.keymap.set(
   ':resize <bar> :vertical resize <cr>'
 )
 
+-- Create an user command that copies the current buffer path into clipboard.
+vim.api.nvim_create_user_command(
+  'CopyCurrentBufferPath',
+  function ()
+    vim.cmd('let @+=@% | echo "Copied to clipboard: " . @%')
+  end,
+  {desc = 'Copy the current buffer path into clipboard'}
+)
+
 -- Set leader key for custom key mappings.
 vim.g.mapleader = ' '
 
