@@ -283,7 +283,10 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "<leader>p",
-  function () builtin.buffers({sort_mru = true}) end, {}
+  function () builtin.buffers({
+    sort_mru = true,
+    initial_mode = 'normal',
+  }) end, {}
 )
 
 -- In normal mode, map Ctrl + t to searching for a string in cwd.
@@ -361,6 +364,7 @@ if use_lsp then
         builtin.lsp_references({
           initial_mode = 'normal',
           show_line = false,
+          include_declaration = false,
         })
       end,
       {buffer = bufnr}
