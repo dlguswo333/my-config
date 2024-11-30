@@ -90,8 +90,12 @@ local plugins = {
   -- Fuzzy find things easily.
   {
     'nvim-telescope/telescope.nvim',
+    version = false,
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
+      defaults = {
+        path_display = { 'filename_first' },
+      },
       pickers = {
         colorscheme = {
           enable_preview = true
