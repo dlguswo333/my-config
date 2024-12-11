@@ -106,6 +106,7 @@ local plugins = {
   -- Show git blame of the current line.
   {
     'lewis6991/gitsigns.nvim',
+    version = false,
     opts = {}
   },
   -- Show git blame of the current line.
