@@ -328,7 +328,7 @@ vim.keymap.set(
 -- In normal mode, map Ctrl + T to searching for telescope commands.
 vim.keymap.set(
   "n",
-  "<leader>T",
+  "<leader>r",
   function () vim.cmd(':Telescope') end, {}
 )
 
