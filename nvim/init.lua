@@ -221,12 +221,6 @@ local plugins = {
     'nmac427/guess-indent.nvim',
     opts = {}
   },
-  -- Setup lsp using lsp-zero and plugins below this line are all about lsp.
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    enabled = use_lsp
-  },
   {
     'neovim/nvim-lspconfig',
      enabled = use_lsp
@@ -332,71 +326,106 @@ vim.keymap.set(
   function () vim.cmd(':Telescope') end, {}
 )
 
--- Setup lsp using lsp-zero.
+-- Setup lsp manually.
 if use_lsp then
   require('mason').setup({})
-  local lsp_zero = require('lsp-zero')
-  lsp_zero.on_attach(function(_, bufnr)
-    -- see :help lsp-zero-keybindings
-    -- to learn the available actions
-    lsp_zero.default_keymaps({
-      buffer = bufnr,
-      preserve_mappings = false,
-    })
-
-    -- Show lsp_definitions within telescope.
-    vim.keymap.set(
-      'n',
-      'gd',
-      function()
-        builtin.lsp_definitions({
-          initial_mode = 'normal',
-          show_line = false,
-        })
-      end,
-      { buffer = bufnr }
-    )
-
-    -- Show lsp_references within telescope.
-    vim.keymap.set(
-      'n',
-      'gr',
-      function()
-        builtin.lsp_references({
-          initial_mode = 'normal',
-          show_line = false,
-          include_declaration = false,
-        })
-      end,
-      {buffer = bufnr}
-    )
-  end)
   require('mason-lspconfig').setup({
     handlers = {
-      lsp_zero.default_setup
-    }
+      -- Setup each server with default options.
+      function(server_name)
+        require('lspconfig')[server_name].setup({})
+      end,
+    },
+  })
+
+  -- Reserve a space in the gutter
+  -- This will avoid an annoying layout shift in the screen
+  vim.opt.signcolumn = 'yes'
+
+  -- Add cmp_nvim_lsp capabilities settings to lspconfig
+  -- This should be executed before you configure any language server
+  local lspconfig_defaults = require('lspconfig').util.default_config
+  lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+    'force',
+    lspconfig_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
+  )
+
+  -- This is where you enable features that only work
+  -- if there is a language server active in the file
+  vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+      local opts = {buffer = event.buf}
+
+      -- Setup lsp keymappings.
+      vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+      vim.keymap.set(
+        'n',
+        'gd',
+        function()
+          builtin.lsp_definitions({
+            initial_mode = 'normal',
+            show_line = false,
+          })
+        end,
+        opts
+      )
+      vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+      vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+      vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+      vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+      vim.keymap.set(
+        'n',
+        'gr',
+        function()
+          builtin.lsp_references({
+            initial_mode = 'normal',
+            show_line = false,
+            include_declaration = false,
+          })
+        end,
+        opts
+      )
+      vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+      vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+      vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+      vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+
+      -- Change float styles.
+      vim.diagnostic.config({
+        float = { border = 'rounded' },
+      })
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+        vim.lsp.handlers.hover,
+        {
+          border = "rounded",
+        }
+      )
+      vim.cmd('highlight! link NormalFloat Normal')
+    end,
   })
 
   local cmp = require('cmp')
   cmp.setup({
-    mapping = {
-      ['<Tab>'] = cmp.mapping.confirm({select = true})
-    },
-    window = {
-      completion = {
-        border = 'rounded',
-        -- winhighlight = 'Normal:CmpNormal',
-      }
-    }
-  })
-  local cmp_format = lsp_zero.cmp_format({details = true})
-  cmp.setup({
     -- The order of the sources determines their order in the completion results.
     sources = {
-      {name = 'nvim_lsp'},
-      {name = 'buffer'},
+      { name = 'nvim_lsp' },
+      { name = 'buffer' },
     },
-    formatting = cmp_format,
+    snippet = {
+      expand = function(args)
+        -- You need Neovim v0.10 to use vim.snippet
+        require('luasnip').lsp_expand(args.body)
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<Tab>'] = cmp.mapping.confirm({ select = true })
+    }),
   })
 
   local lspconfig = require('lspconfig')
