@@ -331,15 +331,6 @@ vim.keymap.set(
 
 -- Setup lsp manually.
 if use_lsp then
-  require('mason').setup({})
-  require('mason-lspconfig').setup({
-    handlers = {
-      -- Setup each server with default options.
-      function(server_name)
-        require('lspconfig')[server_name].setup({})
-      end,
-    },
-  })
 
   -- Reserve a space in the gutter
   -- This will avoid an annoying layout shift in the screen
@@ -353,6 +344,16 @@ if use_lsp then
     lspconfig_defaults.capabilities,
     require('cmp_nvim_lsp').default_capabilities()
   )
+
+  require('mason').setup({})
+  require('mason-lspconfig').setup({
+    handlers = {
+      -- Setup each server with default options.
+      function(server_name)
+        require('lspconfig')[server_name].setup({})
+      end,
+    },
+  })
 
   -- This is where you enable features that only work
   -- if there is a language server active in the file
