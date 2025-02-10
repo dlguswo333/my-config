@@ -6,6 +6,9 @@ vim.cmd("syntax on")
 -- Show line numbers.
 vim.cmd("set nu")
 
+-- Show relative line numbers
+vim.cmd("set rnu")
+
 -- Highlight the current cursor line.
 vim.cmd("set cursorline")
 
