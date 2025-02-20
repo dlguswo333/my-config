@@ -69,4 +69,18 @@ If you find this behavior annoying, run this command:
 git config --global difftool.prompt false
 ```
 
+# Sign your Commits
+If you want to sign commits, you may follow the following settings.
+
+```shell
+# Set gpg sign flag.
+git config --global commit.gpgsign true
+
+# Set your sign key.
+git config --global user.signingkey <YOUR-SIGN-KEY>
+
+# Optionally, in case you want to sign with ssh keys:
+git config --global gpg.format ssh
+```
+
 [core-eol-ignore]: https://git-scm.com/docs/git-config
