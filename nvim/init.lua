@@ -252,7 +252,22 @@ local plugins = {
   {
     'hrsh7th/cmp-buffer',
      enabled = use_lsp
-  }
+  },
+  -- Show symbols and structures inside the file.
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = false,
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      show_dirname = false,
+      show_filename = false,
+    },
+    enabled = use_lsp
+  },
 }
 
 require("lazy").setup(plugins, {
