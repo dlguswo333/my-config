@@ -40,11 +40,10 @@ vim.cmd("set wildmenu")
 vim.cmd("set ignorecase")
 vim.cmd("set smartcase")
 
--- Set colorscheme
-vim.cmd("colorscheme shine")
-
 -- Automatically reload on file changes.
 vim.cmd("set autoread")
+vim.cmd("au CursorHold * checktime")
+vim.cmd("au VimResume * checktime")
 
 -- Remember last position
 vim.cmd([[
