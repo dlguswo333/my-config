@@ -479,13 +479,28 @@ if use_lsp then
   if lspconfig.vtsls then
     local yarnTsdkPath = './.yarn/sdks/typescript/lib'
     lspconfig.vtsls.setup({
+      -- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
       settings = {
         vtsls = {
           autoUseWorkspaceTsdk = true
         },
-        typescript = {
+        ['js/ts'] = {
+          implicitProjectConfig = {
+            target = 'ESNext',
+          },
+        },
+        javascript = {
           -- https://github.com/yioneko/vtsls/issues/169
-          tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil
+          tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil,
+          format = {
+            insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false
+          }
+        },
+        typescript = {
+          tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil,
+          format = {
+            insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false
+          }
         }
       }
     })
