@@ -268,6 +268,17 @@ local plugins = {
     },
     enabled = use_lsp
   },
+  -- Show function signatures and parameters while typing.
+  {
+    "ray-x/lsp_signature.nvim",
+    cond = use_lsp,
+    event = "VeryLazy",
+    opts = {
+      handler_opts = {
+        border = 'rounded'
+      }
+    },
+  },
 }
 
 require("lazy").setup(plugins, {
