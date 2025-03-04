@@ -1,5 +1,7 @@
 # lazygit config
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+promptToReturnFromSubprocess: false
+
 git:
   paging:
     colorArg: always
