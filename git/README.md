@@ -83,4 +83,20 @@ git config --global user.signingkey <YOUR-SIGN-KEY>
 git config --global gpg.format ssh
 ```
 
+# lazygit
+*A simple terminal UI for git commands.*
+
+There is `config.yml` file for lazygit configurations.
+
+<https://github.com/jesseduffield/lazygit?tab=readme-ov-file#installation>
+
+# git-delta
+*A syntax-highlighting pager for git, diff, and grep output*
+
+Be aware that delta uses git config for its configurations.
+I clarified that it also applies to delta outside git (i.e. direct `delta` command).
+
+<https://dandavison.github.io/delta/installation.html>
+
+
 [core-eol-ignore]: https://git-scm.com/docs/git-config
