@@ -229,7 +229,10 @@ local plugins = {
   },
   {
     'hrsh7th/cmp-nvim-lsp',
-     enabled = use_lsp
+    enabled = use_lsp,
+    dependencies = {
+      'onsails/lspkind.nvim',
+    },
   },
   {
     'hrsh7th/nvim-cmp',
@@ -437,6 +440,7 @@ if use_lsp then
   })
 
   local cmp = require('cmp')
+  local lspkind = require('lspkind')
   cmp.setup({
     -- The order of the sources determines their order in the completion results.
     sources = {
@@ -456,6 +460,9 @@ if use_lsp then
     mapping = cmp.mapping.preset.insert({
       ['<Tab>'] = cmp.mapping.confirm({ select = true })
     }),
+    formatting = {
+      format = lspkind.cmp_format({ preset = 'codicons' }),
+    }
   })
 
   local lspconfig = require('lspconfig')
