@@ -10,6 +10,15 @@ alias ls="ls -GF --color"
 # -h Human readable size format
 alias ll="ls -alhF --color"
 
+# Configure for WSL.
+if uname -r | grep -iq WSL; then
+  PATH=$PATH:/mnt/c/Windows/
+  alias code="/mnt/c/Users/LHJ/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code"
+  explorer="/mnt/c/Windows/explorer.exe"
+  alias explorer=$explorer
+  export BROWSER=$explorer
+fi
+
 # Enable auto correction
 setopt correct
 
