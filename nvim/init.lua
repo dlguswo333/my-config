@@ -392,10 +392,20 @@ if use_lsp then
   vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
-      local opts = {buffer = event.buf}
+      -- nowait for overlapping keymappings.
+      local opts = {buffer = event.buf, nowait = true}
 
       -- Setup lsp keymappings.
-      vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+      vim.keymap.set(
+        'n',
+        'K',
+        function ()
+          vim.lsp.buf.hover({
+            border = 'rounded',
+          })
+        end,
+        opts
+      )
       vim.keymap.set(
         'n',
         'gd',
@@ -432,12 +442,6 @@ if use_lsp then
       vim.diagnostic.config({
         float = { border = 'rounded' },
       })
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-        vim.lsp.handlers.hover,
-        {
-          border = "rounded",
-        }
-      )
       vim.cmd('highlight! link NormalFloat Normal')
     end,
   })
