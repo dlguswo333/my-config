@@ -36,6 +36,13 @@ git config core.autocrlf input
 
 Note that `core.eol` is [ignored][core-eol-ignore] if `core.autocrlf` is `true` or `ignored`.
 
+# Alias
+Aliasing helps you type less.
+```
+# git co = git commit
+git config --global alias.co checkout
+```
+
 # Change Editor
 ```shell
 git config --global core.editor <YOUR-EDITOR>
