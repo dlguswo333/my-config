@@ -474,7 +474,7 @@ if use_lsp then
 
   local lspconfig = require('lspconfig')
   if lspconfig.jsonls then
-    lspconfig.jsonls.setup({
+    vim.lsp.config('jsonls', {
       settings = {
         json = {
           schemas = {
@@ -493,7 +493,7 @@ if use_lsp then
   end
   if lspconfig.vtsls then
     local yarnTsdkPath = './.yarn/sdks/typescript/lib'
-    lspconfig.vtsls.setup({
+    vim.lsp.config('vtsls', {
       -- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
       settings = {
         vtsls = {
