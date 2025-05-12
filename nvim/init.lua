@@ -276,12 +276,13 @@ local plugins = {
   {
     "ray-x/lsp_signature.nvim",
     cond = use_lsp,
-    event = "VeryLazy",
+    event = 'VeryLazy',
     opts = {
       handler_opts = {
         border = 'rounded'
       }
     },
+    version = false,
   },
 }
 
