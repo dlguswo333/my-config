@@ -314,6 +314,7 @@ vim.keymap.set(
   function () builtin.buffers({
     sort_mru = true,
     initial_mode = 'normal',
+    ignore_current_buffer = true,
   }) end, {}
 )
 
