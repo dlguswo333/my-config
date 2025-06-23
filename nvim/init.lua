@@ -244,11 +244,11 @@ local plugins = {
      enabled = use_lsp
     },
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
      enabled = use_lsp
     },
   {
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
      enabled = use_lsp
   },
   -- Show autocompletion from the buffer.
