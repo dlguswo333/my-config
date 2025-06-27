@@ -9,6 +9,8 @@ alias ls="ls -GF --color"
 # -l Use long listing format
 # -h Human readable size format
 alias ll="ls -alhF --color"
+# nvim alias.
+alias nvi=nvim
 
 # Configure for WSL.
 if uname -r | grep -iq WSL; then
