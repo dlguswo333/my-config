@@ -21,6 +21,17 @@ if uname -r | grep -iq WSL; then
   export BROWSER=$explorer
 fi
 
+# Add home and end Key Bindings for some distro not having default mapping (e.g. Fedora)
+# https://blog.bullspit.co.uk/linux/zsh-home-end/
+if [[ $(bindkey) != *'^[OH'* ]]; then
+  bindkey '^[OH' beginning-of-line
+  bindkey '^[OF' end-of-line
+fi
+if [[ $(bindkey) != *'^[[H'* ]]; then
+  bindkey '^[[H' beginning-of-line
+  bindkey '^[[F' end-of-line
+fi
+
 # Enable auto correction
 setopt correct
 
