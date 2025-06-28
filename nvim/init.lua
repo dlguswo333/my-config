@@ -89,6 +89,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   -- Fuzzy find things easily.
   {
     'nvim-telescope/telescope.nvim',
@@ -168,7 +174,7 @@ local plugins = {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
-        theme = 'ayu_light'
+        theme = 'onedark'
       },
       sections = {
         lualine_a = {
@@ -291,6 +297,8 @@ require("lazy").setup(plugins, {
     version = '*',
   },
 })
+
+vim.cmd('colorscheme tokyonight-storm')
 
 local builtin = require("telescope.builtin")
 
