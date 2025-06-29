@@ -5,20 +5,27 @@ sudo apt update && \
 sudo apt install zsh
 ```
 
-Copy and paste the `.zshrc` config file to your root folder.
+Link the `.zshrc` config file to your home directory.
+```shell
+ln -s $PWD/zsh/.zshrc ~/.zshrc
+```
 
 Change default shell of your account.
-
 ```shell
 chsh -s $(which zsh)
 ```
-
 
 # Powerlevel10k
 [powerlevel10k][p10k] is a theme for zsh.
 It gives you nice prompts on terminal.
 You need a nerd font to use p10k.
 
-Follow their Github README to install it from git repository for easier maintenance and upgrade.
+To install powerlevel10k:
+```shell
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+```
+
+Follow their Github README for easier maintenance and upgrade.
 
 [p10k]: https://github.com/romkatv/powerlevel10k

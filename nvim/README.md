@@ -1,4 +1,6 @@
 [neovim][neovim] is kind of like yet another vim.
+
+# Install
 To install neovim on your machine, you can install it from apt,
 but neovim on apt is not up to date as of now.
 
@@ -30,13 +32,12 @@ but then you need to type `nvim.appimage` command.
 Linux commands are expected to be single word.
 You will end up linking or aliasing anyway.
 
----
-
+# Configure
+## init.vim
 If you do not want package manager and additional plugins,
 what you need is `init.vim`.
-Copy and paste the `init.vim` file to the designated path.
+Link `init.vim` file to the designated path.
 According to [neovim docs][neovim-config]:
-
 ```
 A file containing initialization commands is generically called
 a "vimrc" or config file.  It can be either Vimscript ("init.vim") or
@@ -53,32 +54,31 @@ Thus if you are on Unix (Linux):
 
 ```shell
 mkdir -p ~/.config/nvim/
-cp nvim/init.vim ~/.config/nvim/
+ln -s $PWD/nvim/init.vim ~/.config/nvim/init.vim
 ```
 
+# init.lua
 If you like to install additional features, what you need is `init.lua`.
-You need to install ripgrep to use telescope's features, including searching for keywords.
-ripgrep needs to be accessible through PATH env.
-
 ```shell
 mkdir -p ~/.config/nvim/
-cp nvim/init.lua ~/.config/nvim/
+ln -s $PWD/nvim/init.lua ~/.config/nvim/init.lua
+```
 
-# Run the following commands on Linux. Use brew to install ripgrep on Mac.
+You need to install ripgrep to use telescope's features, including searching for keywords.
+ripgrep needs to be accessible through PATH env.
+Run the following commands on Linux. Use brew to install ripgrep on Mac.
+```shell
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.0.3/ripgrep_14.0.3-1_amd64.deb
 sudo dpkg -i ripgrep_14.0.3-1_amd64.deb
 ```
 
-Also, `init.lua` has some basic LSP features based on [lsp-zero][lsp-zero].
-You can control whether to turn it on and off by updating a boolean value defined in the file.
+Also, `init.lua` has some basic LSP features.
 To enable it, you need to install LSP or linters such things by [mason][mason],
-a package manager for LSP.
-
+a package manager for LSP. Run the following command within nvim command mode.
 ```shell
 :MasonInstall <PACKAGE>
 ```
 
 [neovim]: https://github.com/neovim/neovim
 [neovim-config]: https://neovim.io/doc/user/starting.html#initialization
-[lsp-zero]: https://github.com/VonHeikemen/lsp-zero.nvim
 [mason]: https://github.com/williamboman/mason.nvim

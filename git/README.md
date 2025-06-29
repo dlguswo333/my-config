@@ -45,7 +45,7 @@ git config --global alias.co checkout
 
 # Change Editor
 ```shell
-git config --global core.editor <YOUR-EDITOR>
+git config --global core.editor <YOUR_EDITOR>
 ```
 
 It also supports `~` user home directory. For instance, `~/nvim.appimage`.
@@ -79,14 +79,18 @@ git config --global difftool.prompt false
 # Sign your Commits
 If you want to sign commits, you may follow the following settings.
 
+First set gpg sign flag:
 ```shell
-# Set gpg sign flag.
 git config --global commit.gpgsign true
+```
 
-# Set your sign key.
-git config --global user.signingkey <YOUR-SIGN-KEY>
+Then set your sign key. `<YOUR_SIGN_KEY>` is your GPG key ID or your ssh key file path.
+```shell
+git config --global user.signingkey <YOUR_SIGN_KEY>
+```
 
-# Optionally, in case you want to sign with ssh keys:
+In case you want to sign with ssh keys:
+```shell
 git config --global gpg.format ssh
 ```
 
