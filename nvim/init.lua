@@ -251,8 +251,9 @@ local plugins = {
     },
   {
     'mason-org/mason.nvim',
-     enabled = use_lsp
-    },
+    version = false,
+    enabled = use_lsp
+  },
   {
     'mason-org/mason-lspconfig.nvim',
      enabled = use_lsp
