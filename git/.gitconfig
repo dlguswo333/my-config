@@ -1,0 +1,18 @@
+[user]
+	name = dlguswo333
+	email = dlguswo002@gmail.com
+	# signingkey = /path/to/your_key
+[core]
+	eol = lf
+	# editor = nvim
+	# pager = delta
+[commit]
+	# gpgsign = true
+[gpg]
+	# format = ssh
+[alias]
+	co = checkout
+[diff]
+	# tool = delta
+[difftool]
+	prompt = false
