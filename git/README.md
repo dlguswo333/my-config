@@ -85,6 +85,8 @@ git config --global commit.gpgsign true
 ```
 
 Then set your sign key. `<YOUR_SIGN_KEY>` is your GPG key ID or your ssh key file path.
+If you are using ssh key here, it can be either public or private key, or even the key itself:
+<https://git-scm.com/docs/git-config#Documentation/git-config.txt-usersigningKey>
 ```shell
 git config --global user.signingkey <YOUR_SIGN_KEY>
 ```
