@@ -2,6 +2,8 @@
 	name = dlguswo333
 	email = dlguswo002@gmail.com
 	# signingkey = /path/to/your_key
+[merge]
+	ff = true
 [core]
 	eol = lf
 	# editor = nvim
@@ -16,3 +18,7 @@
 	# tool = delta
 [difftool]
 	prompt = false
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = main
