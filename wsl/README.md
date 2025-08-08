@@ -24,9 +24,33 @@ wsl --import <DIST_NAME> <INSTALL_LOCATION> <FILE_NAME>
 
 You can find more about the basic commands [here][basic-commands].
 
+# .wslconfig
+`.wslconfig` file lets you config globally across wsl instances.
+It requires you to write `~/.wslconfig` in your Windows.
+
+## Networking
+By default wsl uses NAT networking, has a virtualized ethernet adapter with an unique IP address.
+Thus if a remote device needs to reach a server inside wsl, you need to set your Windows
+so that it can do proxy to your wsl, using such as `netsh` command.
+However, this is somewhat cumbersome to administer every rule.
+setting wsl network mode to `mirrored` is a much simpler solutiont to that
+since wsl instance has mirrored network interfaces that you have on Windows.
+```shell
+[wsl2]
+networkingMode=mirrored
+```
+
+`hostAddressLoopback` option allows all assigned local IP addresses to be used to access wsl.
+```shell
+[experimental]
+hostAddressLoopback=true
+```
+
+See <https://learn.microsoft.com/en-us/windows/wsl/networking> for more information.
+
 # wsl.conf
-wslconfig lets you config how each wsl instance work.
-It requires you write `/etc/wsl.conf` inside your wsl instance.
+`wsl.conf` lets you config how each wsl instance work.
+It requires you to write `/etc/wsl.conf` inside your wsl instance.
 Note that you need super user privileges to edit the file.
 
 wsl appends useful Windows paths to wsl instances' "PATH" env by default.
