@@ -134,7 +134,7 @@ local plugins = {
         'c', 'lua', 'vim', 'vimdoc', 'query',
       },
       sync_install = true,
-      ignore_install = { 'all' },
+      auto_install = true,
       highlight = {
         enable = true,
         is_supported = function()
