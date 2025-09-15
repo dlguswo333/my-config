@@ -11,6 +11,10 @@ alias ls="ls -GF --color"
 alias ll="ls -alhF --color"
 # nvim alias.
 alias nvi=nvim
+# open alias.
+if which xdg-open > /dev/null 2>&1; then
+  alias open=xdg-open
+fi
 
 # Configure for WSL.
 if uname -r | grep -iq WSL; then
