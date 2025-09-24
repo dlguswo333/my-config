@@ -381,22 +381,12 @@ if use_lsp then
 
   -- Add cmp_nvim_lsp capabilities settings to lspconfig
   -- This should be executed before you configure any language server
-  local lspconfig_defaults = require('lspconfig').util.default_config
-  lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-    'force',
-    lspconfig_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities()
-  )
-
-  require('mason').setup({})
-  require('mason-lspconfig').setup({
-    handlers = {
-      -- Setup each server with default options.
-      function(server_name)
-        require('lspconfig')[server_name].setup({})
-      end,
-    },
+  vim.lsp.config('*', {
+    capabilities = require('cmp_nvim_lsp').default_capabilities()
   })
+
+  require('mason').setup()
+  require('mason-lspconfig').setup()
 
   -- This is where you enable features that only work
   -- if there is a language server active in the file
@@ -483,52 +473,47 @@ if use_lsp then
     }
   })
 
-  local lspconfig = require('lspconfig')
-  if lspconfig.jsonls then
-    vim.lsp.config('jsonls', {
-      settings = {
-        json = {
-          schemas = {
-            {
-              fileMatch = {'package.json'},
-              url = 'https://json.schemastore.org/package.json',
-            },
-            {
-              fileMatch = { 'tsconfig.json' },
-              url = 'https://json.schemastore.org/tsconfig.json',
-            },
+  vim.lsp.config('jsonls', {
+    settings = {
+      json = {
+        schemas = {
+          {
+            fileMatch = {'package.json'},
+            url = 'https://json.schemastore.org/package.json',
+          },
+          {
+            fileMatch = { 'tsconfig.json' },
+            url = 'https://json.schemastore.org/tsconfig.json',
           },
         },
-      }
-    })
-  end
-  if lspconfig.vtsls then
-    local yarnTsdkPath = './.yarn/sdks/typescript/lib'
-    vim.lsp.config('vtsls', {
-      -- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
-      settings = {
-        vtsls = {
-          autoUseWorkspaceTsdk = true
+      },
+    }
+  })
+
+  vim.lsp.config('vtsls', {
+    -- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
+    settings = {
+      vtsls = {
+        autoUseWorkspaceTsdk = true
+      },
+      ['js/ts'] = {
+        implicitProjectConfig = {
+          target = 'ESNext',
         },
-        ['js/ts'] = {
-          implicitProjectConfig = {
-            target = 'ESNext',
-          },
-        },
-        javascript = {
-          -- https://github.com/yioneko/vtsls/issues/169
-          tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil,
-          format = {
-            insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false
-          }
-        },
-        typescript = {
-          tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil,
-          format = {
-            insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false
-          }
+      },
+      javascript = {
+        -- https://github.com/yioneko/vtsls/issues/169
+        tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil,
+        format = {
+          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false
+        }
+      },
+      typescript = {
+        tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil,
+        format = {
+          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false
         }
       }
-    })
-  end
+    }
+  })
 end
