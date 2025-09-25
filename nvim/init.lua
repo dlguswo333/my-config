@@ -443,7 +443,10 @@ if use_lsp then
       vim.diagnostic.config({
         float = { border = 'rounded' },
       })
+      -- Remove background color of float.
       vim.cmd('highlight! link NormalFloat Normal')
+      -- Remove background color of float borders.
+      vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'Normal' })
     end,
   })
 
