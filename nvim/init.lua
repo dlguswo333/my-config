@@ -252,11 +252,16 @@ local plugins = {
   {
     'mason-org/mason.nvim',
     version = false,
-    enabled = use_lsp
+    enabled = use_lsp,
+    opts = {},
   },
   {
     'mason-org/mason-lspconfig.nvim',
-     enabled = use_lsp
+    enabled = use_lsp,
+    version = false,
+    opts = {
+      ensure_installed = {'vtsls', 'html', 'jsonls', 'eslint', 'pyright'},
+    },
   },
   -- Show autocompletion from the buffer.
   {
@@ -384,9 +389,6 @@ if use_lsp then
   vim.lsp.config('*', {
     capabilities = require('cmp_nvim_lsp').default_capabilities()
   })
-
-  require('mason').setup()
-  require('mason-lspconfig').setup()
 
   -- This is where you enable features that only work
   -- if there is a language server active in the file
