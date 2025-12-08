@@ -233,22 +233,34 @@ local plugins = {
     'neovim/nvim-lspconfig',
      enabled = use_lsp
   },
+  -- Show autocompletion menu.
   {
-    'hrsh7th/cmp-nvim-lsp',
-    enabled = use_lsp,
-    dependencies = {
-      'onsails/lspkind.nvim',
+    'saghen/blink.cmp',
+    opts = {
+      sources = {
+        providers = {
+          -- Show items from buffer together with items from lsp.
+          lsp = { fallbacks = {} }
+        }
+      },
+      completion = {
+        documentation = {
+          auto_show = true,
+          window = {
+            border = 'rounded',
+            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None',
+          },
+        },
+        menu = {
+          border = 'rounded',
+          winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None',
+        },
+      },
+      keymap = {
+        ['<Tab>'] = { 'select_and_accept' },
+      },
     },
   },
-  {
-    'hrsh7th/nvim-cmp',
-    version = false,
-    enabled = use_lsp
-  },
-  {
-    'L3MON4D3/LuaSnip',
-     enabled = use_lsp
-    },
   {
     'mason-org/mason.nvim',
     version = false,
@@ -262,11 +274,6 @@ local plugins = {
     opts = {
       ensure_installed = {'vtsls', 'html', 'jsonls', 'eslint', 'pyright'},
     },
-  },
-  -- Show autocompletion from the buffer.
-  {
-    'hrsh7th/cmp-buffer',
-     enabled = use_lsp
   },
   -- Show symbols and structures inside the file.
   {
@@ -384,12 +391,6 @@ if use_lsp then
   -- Enable virtual text (e.g. inline diagnostic text)
   vim.diagnostic.config({virtual_text = true})
 
-  -- Add cmp_nvim_lsp capabilities settings to lspconfig
-  -- This should be executed before you configure any language server
-  vim.lsp.config('*', {
-    capabilities = require('cmp_nvim_lsp').default_capabilities()
-  })
-
   -- This is where you enable features that only work
   -- if there is a language server active in the file
   vim.api.nvim_create_autocmd('LspAttach', {
@@ -450,32 +451,6 @@ if use_lsp then
       -- Remove background color of float borders.
       vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'Normal' })
     end,
-  })
-
-  local cmp = require('cmp')
-  local lspkind = require('lspkind')
-  cmp.setup({
-    -- The order of the sources determines their order in the completion results.
-    sources = {
-      { name = 'nvim_lsp' },
-      { name = 'buffer' },
-    },
-    snippet = {
-      expand = function(args)
-        -- You need Neovim v0.10 to use vim.snippet
-        require('luasnip').lsp_expand(args.body)
-      end,
-    },
-    window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<Tab>'] = cmp.mapping.confirm({ select = true })
-    }),
-    formatting = {
-      format = lspkind.cmp_format({ preset = 'codicons' }),
-    }
   })
 
   vim.lsp.config('jsonls', {
