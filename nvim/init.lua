@@ -259,6 +259,16 @@ local plugins = {
       keymap = {
         ['<Tab>'] = { 'select_and_accept' },
       },
+      cmdline = {
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+        },
+        keymap = {
+          preset = 'inherit',
+        }
+      }
     },
   },
   {
