@@ -257,7 +257,8 @@ local plugins = {
         },
       },
       keymap = {
-        ['<Tab>'] = { 'select_and_accept' },
+        -- If cmp is visible select and accept; if not, then run the fallback.
+        ['<Tab>'] = { 'select_and_accept', 'fallback' },
       },
       cmdline = {
         completion = {
