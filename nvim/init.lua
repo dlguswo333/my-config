@@ -255,6 +255,11 @@ local plugins = {
           border = 'rounded',
           winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None',
         },
+        accept = {
+          auto_brackets = {
+            enabled = false,
+          },
+        },
       },
       keymap = {
         -- If cmp is visible select and accept; if not, then run the fallback.
