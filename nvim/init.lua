@@ -165,7 +165,7 @@ local plugins = {
           node_decremental = "<bs>",
         },
       },
-      indent = { enable = false },
+      indent = { enable = true },
     }
   },
   -- Setup status bar.
