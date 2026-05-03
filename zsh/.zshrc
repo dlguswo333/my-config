@@ -36,6 +36,11 @@ if [[ $(bindkey) != *'^[[H'* ]]; then
   bindkey '^[[F' end-of-line
 fi
 
+# Add del key binding for deleting instead of inserting a '~'.
+if [[ $(bindkey) != *'^[[3~'* ]]; then
+  bindkey "^[[3~" delete-char
+fi
+
 # Enable auto correction
 setopt correct
 
