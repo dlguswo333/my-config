@@ -174,7 +174,7 @@ local plugins = {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
-        theme = 'onedark'
+        theme = 'Tomorrow'
       },
       sections = {
         lualine_a = {
@@ -319,6 +319,11 @@ local plugins = {
     },
     version = false,
   },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000
+  },
 }
 
 require("lazy").setup(plugins, {
@@ -327,7 +332,7 @@ require("lazy").setup(plugins, {
   },
 })
 
-vim.cmd('colorscheme tokyonight-storm')
+vim.cmd('colorscheme catppuccin-latte')
 
 local builtin = require("telescope.builtin")
 
