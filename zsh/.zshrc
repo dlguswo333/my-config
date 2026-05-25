@@ -36,6 +36,12 @@ if [[ $(bindkey) != *'^[[H'* ]]; then
   bindkey '^[[F' end-of-line
 fi
 
+# Add Ctrl + arrow Key Bindings for going back or forward by word for some distro not having default mapping.
+if [[ $(bindkey) != *'^[[1;5C'* ]]; then
+  bindkey "^[[1;5C" forward-word
+  bindkey "^[[1;5D" backward-word
+fi
+
 # Add del key binding for deleting instead of inserting a '~'.
 if [[ $(bindkey) != *'^[[3~'* ]]; then
   bindkey "^[[3~" delete-char
