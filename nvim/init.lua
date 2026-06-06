@@ -124,49 +124,15 @@ local plugins = {
   },
   -- Highlight code with parsers.
   {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs',
-    opts = {
-      ensure_installed = {
-        -- These 5 parsers should always be installed. But I don't know exactly why...
-        -- https://github.com/nvim-treesitter/nvim-treesitter
-        'c', 'lua', 'vim', 'vimdoc', 'query',
-      },
-      sync_install = true,
-      auto_install = true,
-      highlight = {
-        enable = true,
-        is_supported = function()
-          function check_big_file()
-            local threshold = 300 * 1024
-            -- get the full path of the current file
-            local filename = vim.fn.expand('%:p')
-            -- get the size of the file in bytes
-            local filesize = vim.fn.getfsize(filename)
-            if filesize > threshold then
-                return true
-            else
-                return false
-            end
-          end
-
-          if check_big_file() then
-            return false
-          end
-          return true
-        end
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<cr>",
-          node_incremental = "<cr>",
-          node_decremental = "<bs>",
-        },
-      },
-      indent = { enable = true },
-    }
+    "romus204/tree-sitter-manager.nvim",
+    dependencies = {}, -- tree-sitter CLI must be installed system-wide
+    config = function()
+      require("tree-sitter-manager").setup({
+        border = 'rounded',
+        auto_install = true, -- if enabled, install missing parsers when editing a new file
+        highlight = true, -- treesitter highlighting is enabled by default
+      })
+    end
   },
   -- Setup status bar.
   {
