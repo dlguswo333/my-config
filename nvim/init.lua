@@ -21,6 +21,9 @@ vim.cmd("set shiftwidth=4")
 -- Use spaces instead of a tab.
 vim.cmd("set expandtab")
 
+-- Sync clipboard with OS.
+vim.opt.clipboard = "unnamedplus"
+
 -- Insert or deletes spaces instead of a tab at the start of line.
 vim.cmd("set smarttab")
 
