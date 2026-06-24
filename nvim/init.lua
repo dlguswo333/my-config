@@ -189,9 +189,11 @@ local plugins = {
     'nvim-tree/nvim-tree.lua',
     opts = {},
   },
+  -- Enhance native comments with treesitter.
   {
-    'numToStr/Comment.nvim',
-    opts = {}
+    'folke/ts-comments.nvim',
+    opts = {},
+    event = 'VeryLazy'
   },
   -- Guess indent styles and apply from the file.
   {
