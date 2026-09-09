@@ -448,6 +448,9 @@ if use_lsp then
   vim.lsp.config('jsonls', {
     settings = {
       json = {
+        validate = {
+          enable = true,
+        },
         schemas = {
           {
             fileMatch = {'package.json'},
