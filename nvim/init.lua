@@ -105,7 +105,15 @@ local plugins = {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
       defaults = {
+        dynamic_preview_title = true,
         path_display = { 'filename_first' },
+        layout_config = {
+          width = 0.9,
+          height = 0.9,
+          horizontal = {
+            preview_width = 0.6,
+          },
+        },
       },
       pickers = {
         colorscheme = {
