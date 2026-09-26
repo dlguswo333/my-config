@@ -267,7 +267,7 @@ local plugins = {
     enabled = use_lsp,
     version = false,
     opts = {
-      ensure_installed = {'vtsls', 'html', 'jsonls', 'eslint', 'pyright'},
+      ensure_installed = {'tsc', 'html', 'jsonls', 'eslint', 'pyright'},
     },
   },
   -- Show symbols and structures inside the file.
@@ -473,30 +473,4 @@ if use_lsp then
     }
   })
 
-  vim.lsp.config('vtsls', {
-    -- https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
-    settings = {
-      vtsls = {
-        autoUseWorkspaceTsdk = true
-      },
-      ['js/ts'] = {
-        implicitProjectConfig = {
-          target = 'ESNext',
-        },
-      },
-      javascript = {
-        -- https://github.com/yioneko/vtsls/issues/169
-        tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil,
-        format = {
-          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false
-        }
-      },
-      typescript = {
-        tsdk = vim.fn.isdirectory(yarnTsdkPath) ~= 0 and yarnTsdkPath or nil,
-        format = {
-          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false
-        }
-      }
-    }
-  })
 end
